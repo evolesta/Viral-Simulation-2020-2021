@@ -4,7 +4,7 @@ metadata:
 projects:
   - name: Viral-Simulation-2020-2021
     source:
-      location: 'https://github.com/wbrinksma/Viral-Simulation-2020-2021.git'
+      location: 'https://github.com/evolesta/Viral-Simulation-2020-2021.git'
       type: git
       branch: main
 components:
