@@ -13,6 +13,6 @@ namespace corsim
         public:
             MovementStrategy() {}
             virtual ~ MovementStrategy() {}
-            virtual double executeMovementStrategy(double dy, double dx) = 0;
+            virtual double run(double i, double di, double dt) = 0;
     };
 }

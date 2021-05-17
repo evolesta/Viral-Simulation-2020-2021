@@ -14,6 +14,6 @@ namespace corsim
     class RegularMovementStrategy : public MovementStrategy
     {
         public:
-            double executeMovementStrategy(double dx, double dy) override;
+            double run(double i, double di, double dt) override;
     };
 }

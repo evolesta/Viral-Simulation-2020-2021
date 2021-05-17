@@ -1,9 +1,9 @@
-#include " RegularMovementStrategy.h"
+#include "RegularMovementStrategy.h"
 
 namespace corsim
 {
-    double RegularMovementStrategy::executeMovementStrategy(double dx, double dy)
+    double RegularMovementStrategy::run(double i, double di, double dt)
     {
-        return 0;
+        return i + di * dt;
     }
 }

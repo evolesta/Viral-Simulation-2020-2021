@@ -19,6 +19,12 @@
 #include <emscripten.h>
 #include <math.h>
 
+#include "MovementStrategy.h"
+#include "RegularMovementStrategy.cpp"
+
+// create objects of the concrete strategies
+corsim::RegularMovementStrategy regularStrategy;
+
 namespace corsim
 {
 
@@ -38,12 +44,25 @@ void Simulation::run()
     }
 
     running = true;
+    this->setStrategy(); // run void to determine the strategy for the subject
 
     while(true)
     {
         this->tick();
         emscripten_sleep(tick_speed);
     }
+}
+
+// define the strategy to run in the simulation
+void Simulation::setStrategy()
+{
+    // to do - assignment implementation
+    // iterate trough list of all subjects
+    for (int i = 0; i < _subjects.size(); i++)
+    {
+        this->_subjects.at(i).setMovement(&regularStrategy);
+    }
+    
 }
 
 int counter  = 0;
