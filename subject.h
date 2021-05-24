@@ -26,7 +26,7 @@ namespace corsim
 class Subject
 {
     public:
-        Subject(int x, int y, int radius, bool infected);
+        Subject(int x, int y, int radius, bool infected, bool immune);
         double x();
         double y();
         void set_x(double x);
@@ -37,7 +37,11 @@ class Subject
         void set_dx(double dx);
         void set_dy(double dy);
         bool infected();
-        void infect();
+        void infect(); // void to make the subject infected
+        void cure(); // B3 assignment - void to make the subject better
+        bool immune(); // B3 assignment - if immune, the subject can't get infected for a period of time
+        void becomeImmune(); // B3 assignment - make the subject become immune
+        void becomeVulnerable(); // B3 assignment - make the subject become vulnerable again
         double angle();
         double speed();
 
@@ -47,6 +51,7 @@ class Subject
     private:
         double _x = 0,_y = 0, _dx = 0, _dy = 0;
         bool _infected = false;
+        bool _immune = false;
         int _radius = 0;
 
         MovementStrategy *_strategy;

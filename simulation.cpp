@@ -186,8 +186,12 @@ void Simulation::subject_collision(Subject& s1, Subject& s2)
     {
         if(s1.infected() || s2.infected())
         {
-            s1.infect();
-            s2.infect();
+            // B3 assignment - check if subject is immune, if false infect the subject(s)
+            if (!s1.immune() || !s2.immune())
+            {
+                s1.infect();
+                s2.infect();
+            }
         }        
 
         double theta1 = s1.angle();

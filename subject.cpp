@@ -20,12 +20,13 @@
 namespace corsim
 {
 
-Subject::Subject(int x, int y, int radius, bool infected)
+Subject::Subject(int x, int y, int radius, bool infected, bool immune)
 {
     this->_x = x;
     this->_y = y;
     this->_radius = radius;
     this->_infected = infected;
+    this->_immune = immune;
 }
 
 double Subject::x()
@@ -78,9 +79,33 @@ bool Subject::infected()
     return this->_infected;
 }
 
+// B3 assignment - return if the subject is immune to the virus
+bool Subject::immune()
+{
+    return this->_immune;
+}
+
 void Subject::infect()
 {
     this->_infected = true;
+}
+
+// B3 assignment - added void to cure the subject
+void Subject::cure()
+{
+    this->_infected = false;
+}
+
+// B3 assignment - added void to make the subject immune
+void Subject::becomeImmune()
+{
+    this->_immune = true;
+}
+
+// B3 assignment - added void to make the subject vulnerable again
+void Subject::becomeVulnerable()
+{
+    this->_immune = false;
 }
 
 double Subject::angle()
