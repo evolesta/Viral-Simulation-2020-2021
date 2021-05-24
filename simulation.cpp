@@ -19,11 +19,12 @@
 #include <emscripten.h>
 #include <math.h>
 
-#include "MovementStrategy.h"
 #include "RegularMovementStrategy.cpp"
+#include "LockdownMovementStrategy.cpp"
 
 // create objects of the concrete strategies
 corsim::RegularMovementStrategy regularStrategy;
+corsim::LockdownMovementStrategy lockdownStrategy;
 
 namespace corsim
 {
@@ -56,11 +57,20 @@ void Simulation::run()
 // define the strategy to run in the simulation
 void Simulation::setStrategy()
 {
-    // to do - assignment implementation
-    // iterate trough list of all subjects
-    for (int i = 0; i < _subjects.size(); i++)
+    // iterate trough the list of all subjects
+    for (int i = 0; i < this->_subjects.size(); i++)
     {
-        this->_subjects.at(i).setMovement(&regularStrategy);
+        // if the iteration is less then 25% of the subjects, set the regular movement strategy
+        if (i < (this->_subjects.size() * 0.25))
+        {
+            // set regular movement strategy
+            this->_subjects.at(i).setMovement(&regularStrategy);
+        }
+        else
+        {
+            // set lockdown movement strategy
+            this->_subjects.at(i).setMovement(&lockdownStrategy);
+        }
     }
     
 }
@@ -97,8 +107,11 @@ void Simulation::tick()
 
     for(Subject& s : _subjects)
     {
-        s.set_x(s.x() + s.dx() * dt);
-        s.set_y(s.y() + s.dy() * dt);
+        /* s.set_x(s.x() + s.dx() * dt);
+        s.set_y(s.y() + s.dy() * dt); */
+
+        // run the previousle configured strategy for each subject
+        s.runStrategy(dt);
 
         if(s.infected())
         {
