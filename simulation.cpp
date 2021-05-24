@@ -29,7 +29,7 @@ corsim::LockdownMovementStrategy lockdownStrategy;
 namespace corsim
 {
 
-Simulation::Simulation(int width, int height, std::unique_ptr<Canvas> canvas, std::unique_ptr<StatisticsHandler> sh) : 
+Simulation::Simulation(int width, int height, std::unique_ptr<Canvas> canvas, std::unique_ptr<StatisticsHandler> sh, int infectTime, int immuneTime) : 
     _sim_width{width}, _sim_height{height}, _canvas{std::move(canvas)}, _sh{std::move(sh)} {}
 
 void Simulation::add_subject(Subject&& s)
@@ -45,7 +45,10 @@ void Simulation::run()
     }
 
     running = true;
-    this->setStrategy(); // run void to determine the strategy for the subject
+
+    // General assignment
+    // run void to determine the strategy for the subject
+    this->setStrategy(); 
 
     while(true)
     {
@@ -54,6 +57,7 @@ void Simulation::run()
     }
 }
 
+// General assignment
 // define the strategy to run in the simulation
 void Simulation::setStrategy()
 {
@@ -110,12 +114,14 @@ void Simulation::tick()
         /* s.set_x(s.x() + s.dx() * dt);
         s.set_y(s.y() + s.dy() * dt); */
 
+        // General assigment
         // run the previousle configured strategy for each subject
         s.runStrategy(dt);
 
         if(s.infected())
         {
             numberInfected++;
+            s.increaseInfectTime();
         }
     }
 
@@ -189,6 +195,7 @@ void Simulation::subject_collision(Subject& s1, Subject& s2)
             // B3 assignment - check if subject is immune, if false infect the subject(s)
             if (!s1.immune() || !s2.immune())
             {
+                // infect the subjects
                 s1.infect();
                 s2.infect();
             }

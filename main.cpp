@@ -22,14 +22,19 @@
 #include "ChartJS_handler.h"
 
 //Constants to control the simulation
-const int SUBJECT_COUNT = 200;
+const int SUBJECT_COUNT = 100;
 const int SIM_WIDTH = 800;
 const int SIM_HEIGHT = 500;
 const int SUBJECT_RADIUS = 2;
 
+// B3 assignment
+// constants which defines the time for how long the subject will be infected and is immune to the virus
+const int INFECTION_TIME = 10;
+const int IMMUNE_TIME = 10;
+
 int main() {
     corsim::Simulation s(SIM_WIDTH,SIM_HEIGHT,std::make_unique<corsim::HTMLCanvas>(30,150,SIM_WIDTH,SIM_HEIGHT),
-        std::make_unique<corsim::ChartJSHandler>());
+        std::make_unique<corsim::ChartJSHandler>(), INFECTION_TIME, IMMUNE_TIME);
 
     //Code to randomly generate certain numbers, which is done by using certain distributions
     std::random_device rd;
@@ -44,7 +49,7 @@ int main() {
         double x = dist_w(mt); //Randomly generate x position
         double y = dist_h(mt); //Randomly generate y position
         
-        corsim::Subject su(x,y,SUBJECT_RADIUS,false, true);
+        corsim::Subject su(x,y,SUBJECT_RADIUS,false, false);
 
         su.set_dx(dist_dx(mt));
         su.set_dy(dist_dy(mt));
