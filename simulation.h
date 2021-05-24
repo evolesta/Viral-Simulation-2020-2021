@@ -33,7 +33,7 @@ namespace corsim
 class Simulation
 {
     public:
-        Simulation(int width, int height, std::unique_ptr<Canvas> canvas, std::unique_ptr<StatisticsHandler> sh, int infectTime, int immuneTime);
+        Simulation(int width, int height, int infectTime, int immuneTime, std::unique_ptr<Canvas> canvas, std::unique_ptr<StatisticsHandler> sh);
         void add_subject(Subject&& s);
         void run(); //This method starts the simulation but locks execution because theading is not supported in WASM
     private:
@@ -43,6 +43,7 @@ class Simulation
         void static_collision(Subject& s1, Subject& s2, bool emergency);
         void tick();
         void draw_to_canvas();
+        int infectTime, immuneTime; // B3 assignment - int values for the amount of ticks for infection & immunity
 
         std::unique_ptr<Canvas> _canvas;
         std::vector<Subject> _subjects;

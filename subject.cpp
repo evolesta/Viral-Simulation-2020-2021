@@ -88,7 +88,7 @@ bool Subject::immune()
 // b3 assignment - return the count of ticks which passed on the subject immune time
 int Subject::immuneTime()
 {
-    return this->immuneTime();
+    return this->_immuneTime;
 }
 
 void Subject::infect()
@@ -99,13 +99,19 @@ void Subject::infect()
 // B3 assignment - return the count of ticks which passed on the subject infect time
 int Subject::infectTime()
 {
-    return this->infectTime();
+    return this->_infectTime;
 }
 
 // B3 assignment - increase the counter for infection time +1
 void Subject::increaseInfectTime()
 {
-    this->infectTime()+1;
+    this->_infectTime+1;
+}
+
+// B3 assignment - reset the counter for infection time to 0
+void Subject::resetInfectTime()
+{
+    this->_infectTime = 0;
 }
 
 // B3 assignment - added void to cure the subject

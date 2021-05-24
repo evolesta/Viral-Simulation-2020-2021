@@ -29,8 +29,13 @@ corsim::LockdownMovementStrategy lockdownStrategy;
 namespace corsim
 {
 
-Simulation::Simulation(int width, int height, std::unique_ptr<Canvas> canvas, std::unique_ptr<StatisticsHandler> sh, int infectTime, int immuneTime) : 
-    _sim_width{width}, _sim_height{height}, _canvas{std::move(canvas)}, _sh{std::move(sh)} {}
+Simulation::Simulation(int width, int height, int infectTime, int immuneTime, std::unique_ptr<Canvas> canvas, std::unique_ptr<StatisticsHandler> sh) : 
+    _sim_width{width}, _sim_height{height}, _canvas{std::move(canvas)}, _sh{std::move(sh)} 
+    {
+        // B3 assignment - adjusted constructor to init the infection & immune time values
+        this->infectTime = infectTime;
+        this->immuneTime = immuneTime;
+    }
 
 void Simulation::add_subject(Subject&& s)
 {
@@ -121,7 +126,18 @@ void Simulation::tick()
         if(s.infected())
         {
             numberInfected++;
+
+            // B3 Assignment
+            // Increase the infection time counter for each infected subject by each tick
             s.increaseInfectTime();
+
+            // B3 assignment - check if the subject has reached the max infection time
+            if (s.infectTime() == this->infectTime)
+            {
+                // subject get's cured and becomes immune
+                s.cure();
+                s.becomeImmune();
+            }
         }
     }
 
