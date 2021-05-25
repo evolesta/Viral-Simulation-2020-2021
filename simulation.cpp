@@ -138,6 +138,7 @@ void Simulation::tick()
                 // make the subject better and let it become immune for a period of time
                 s.cure();
             }
+<<<<<<< HEAD
         }
 
         // check if the subject is immune
@@ -152,6 +153,8 @@ void Simulation::tick()
                 // make the subject vulnerable again, so it can be infected
                 s.becomeVulnerable();
             }
+=======
+>>>>>>> b32945faa880d7257ef45f7637c5438e83f63ae1
         }
     }
 

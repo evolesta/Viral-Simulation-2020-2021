@@ -111,12 +111,15 @@ void Subject::increaseInfectTime()
 // B3 assignment - increase the counter for infection time +1
 void Subject::increaseImmuneTime()
 {
+<<<<<<< HEAD
     this->_immuneTime++;
 }
 
 // B3 assignment - added void to cure the subject
 void Subject::cure()
 {
+=======
+>>>>>>> b32945faa880d7257ef45f7637c5438e83f63ae1
     this->_infected = false;
     this->_infectTime = 0;
     this->_immune = true;
