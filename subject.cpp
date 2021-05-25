@@ -88,7 +88,7 @@ bool Subject::immune()
 // b3 assignment - return the count of ticks which passed on the subject immune time
 int Subject::immuneTime()
 {
-    return this->immuneTime();
+    return this->_immuneTime;
 }
 
 void Subject::infect()
@@ -99,24 +99,26 @@ void Subject::infect()
 // B3 assignment - return the count of ticks which passed on the subject infect time
 int Subject::infectTime()
 {
-    return this->infectTime();
+    return this->_infectTime;
 }
 
 // B3 assignment - increase the counter for infection time +1
 void Subject::increaseInfectTime()
 {
-    this->infectTime()+1;
+    this->_infectTime++;
+}
+
+// B3 assignment - increase the counter for infection time +1
+void Subject::increaseImmuneTime()
+{
+    this->_immuneTime++;
 }
 
 // B3 assignment - added void to cure the subject
 void Subject::cure()
 {
     this->_infected = false;
-}
-
-// B3 assignment - added void to make the subject immune
-void Subject::becomeImmune()
-{
+    this->_infectTime = 0;
     this->_immune = true;
 }
 
@@ -124,6 +126,7 @@ void Subject::becomeImmune()
 void Subject::becomeVulnerable()
 {
     this->_immune = false;
+    this->_immuneTime = 0;
 }
 
 double Subject::angle()

@@ -42,8 +42,8 @@ class Subject
         int infectTime(); // B3 assignment - int to count the number of ticks until subjects becomes cured
         void increaseInfectTime(); // B3 assignment - void to increase the infect time counter
         bool immune(); // B3 assignment - if immune, the subject can't get infected for a period of time
-        void becomeImmune(); // B3 assignment - make the subject become immune
         void becomeVulnerable(); // B3 assignment - make the subject become vulnerable again
+        void increaseImmuneTime(); // B3 assignment - void to increase the immune time counter
         int immuneTime(); // B3 assignment - int to count the number of ticks until the subject can be infected again
         double angle();
         double speed();
@@ -56,6 +56,7 @@ class Subject
         bool _infected = false;
         bool _immune = false;
         int _radius = 0;
+        int _infectTime = 0, _immuneTime = 0; // B3 assignment
 
         MovementStrategy *_strategy;
 };

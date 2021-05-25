@@ -29,12 +29,12 @@ const int SUBJECT_RADIUS = 2;
 
 // B3 assignment
 // constants which defines the time for how long the subject will be infected and is immune to the virus
-const int INFECTION_TIME = 10;
-const int IMMUNE_TIME = 10;
+const int INFECTION_TIME = 500;
+const int IMMUNE_TIME = 500;
 
 int main() {
-    corsim::Simulation s(SIM_WIDTH,SIM_HEIGHT,std::make_unique<corsim::HTMLCanvas>(30,150,SIM_WIDTH,SIM_HEIGHT),
-        std::make_unique<corsim::ChartJSHandler>(), INFECTION_TIME, IMMUNE_TIME);
+    corsim::Simulation s(SIM_WIDTH,SIM_HEIGHT, INFECTION_TIME, IMMUNE_TIME, std::make_unique<corsim::HTMLCanvas>(30,150,SIM_WIDTH,SIM_HEIGHT),
+        std::make_unique<corsim::ChartJSHandler>());
 
     //Code to randomly generate certain numbers, which is done by using certain distributions
     std::random_device rd;

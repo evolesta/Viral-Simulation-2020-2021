@@ -29,8 +29,13 @@ corsim::LockdownMovementStrategy lockdownStrategy;
 namespace corsim
 {
 
-Simulation::Simulation(int width, int height, std::unique_ptr<Canvas> canvas, std::unique_ptr<StatisticsHandler> sh, int infectTime, int immuneTime) : 
-    _sim_width{width}, _sim_height{height}, _canvas{std::move(canvas)}, _sh{std::move(sh)} {}
+Simulation::Simulation(int width, int height, int infectTime, int immuneTime, std::unique_ptr<Canvas> canvas, std::unique_ptr<StatisticsHandler> sh) : 
+    _sim_width{width}, _sim_height{height}, _canvas{std::move(canvas)}, _sh{std::move(sh)} 
+    {
+        // B3 assignment - adjusted constructor to init the infection & immune time values
+        this->infectTime = infectTime;
+        this->immuneTime = immuneTime;
+    }
 
 void Simulation::add_subject(Subject&& s)
 {
@@ -118,10 +123,35 @@ void Simulation::tick()
         // run the previousle configured strategy for each subject
         s.runStrategy(dt);
 
+        // B3 assignment
+        // Manipulated code to make subjects better and immune
         if(s.infected())
         {
             numberInfected++;
+
+            // increase the infection time by each tick
             s.increaseInfectTime();
+
+            // check if the infection time has passed the max infection time
+            if (s.infectTime() == this->infectTime)
+            {
+                // make the subject better and let it become immune for a period of time
+                s.cure();
+            }
+        }
+
+        // check if the subject is immune
+        if (s.immune())
+        {
+            // increase the immune time
+            s.increaseImmuneTime();
+
+            // check if the immune time has passed the max immune time
+            if (s.immuneTime() == this->immuneTime)
+            {
+                // make the subject vulnerable again, so it can be infected
+                s.becomeVulnerable();
+            }
         }
     }
 
