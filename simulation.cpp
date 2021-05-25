@@ -123,20 +123,20 @@ void Simulation::tick()
         // run the previousle configured strategy for each subject
         s.runStrategy(dt);
 
+        // B3 assignment
+        // Manipulated code to make subjects better and immune
         if(s.infected())
         {
             numberInfected++;
 
-            // B3 Assignment
-            // Increase the infection time counter for each infected subject by each tick
+            // increase the infection time by each tick
             s.increaseInfectTime();
 
-            // B3 assignment - check if the subject has reached the max infection time
+            // check if the infection time has passed the max infection time
             if (s.infectTime() == this->infectTime)
             {
-                // subject get's cured and becomes immune
+                // make the subject better and let it become immune for a period of time
                 s.cure();
-                s.becomeImmune();
             }
         }
     }

@@ -41,9 +41,7 @@ class Subject
         void cure(); // B3 assignment - void to make the subject better
         int infectTime(); // B3 assignment - int to count the number of ticks until subjects becomes cured
         void increaseInfectTime(); // B3 assignment - void to increase the infect time counter
-        void resetInfectTime(); // B3 assignment - void to reset the infect time counter
         bool immune(); // B3 assignment - if immune, the subject can't get infected for a period of time
-        void becomeImmune(); // B3 assignment - make the subject become immune
         void becomeVulnerable(); // B3 assignment - make the subject become vulnerable again
         int immuneTime(); // B3 assignment - int to count the number of ticks until the subject can be infected again
         double angle();

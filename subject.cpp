@@ -105,24 +105,14 @@ int Subject::infectTime()
 // B3 assignment - increase the counter for infection time +1
 void Subject::increaseInfectTime()
 {
-    this->_infectTime+1;
-}
-
-// B3 assignment - reset the counter for infection time to 0
-void Subject::resetInfectTime()
-{
-    this->_infectTime = 0;
+    this->_infectTime++;
 }
 
 // B3 assignment - added void to cure the subject
 void Subject::cure()
 {
     this->_infected = false;
-}
-
-// B3 assignment - added void to make the subject immune
-void Subject::becomeImmune()
-{
+    this->_infectTime = 0;
     this->_immune = true;
 }
 
