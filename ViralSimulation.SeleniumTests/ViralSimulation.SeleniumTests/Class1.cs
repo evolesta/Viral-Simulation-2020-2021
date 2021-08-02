@@ -20,12 +20,6 @@ namespace ViralSimulation.SeleniumTests
             Assert.True(true);
         }
 
-        //[Test]
-        //public void PassTheTestAgain()
-        //{
-        //    Assert.True(false);
-        //}
-
         [Test]
         public void Bla()
         {
@@ -35,13 +29,14 @@ namespace ViralSimulation.SeleniumTests
             //Assert.False(graphElementElement.Displayed);
 
             var document = new HtmlDocument();
-            //var stream = File.OpenText("/home/src/viralsimtester/viralsim/index.html");
-            var stream = File.OpenText(@"C:\Data\index.html");
+            //var stream = File.OpenText(@"C:\Data\index.html");
+            var stream = File.OpenText("/home/src/viralsim/index.html");
             document.Load(stream);
 
             var body = document.DocumentNode.ChildNodes.FindFirst("body");
             var titleElement = body.ChildNodes.FindFirst("h1");
-            Assert.AreEqual("Coronavirus Simulation", titleElement.InnerText);
+            //Assert.Greater(document.DocumentNode.ChildNodes.Count, 0);
+            Assert.AreEqual("Coronavirus Simulatie", titleElement.InnerText);
         }
     }
 }
