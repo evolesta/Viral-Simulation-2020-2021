@@ -1,2 +1,4 @@
 build
 .vs
+ViralSimulation.SeleniumTests/ViralSimulation.SeleniumTests/obj
+ViralSimulation.SeleniumTests/ViralSimulation.SeleniumTests/bin

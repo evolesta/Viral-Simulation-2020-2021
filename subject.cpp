@@ -19,7 +19,6 @@
 
 namespace corsim
 {
-compilation error
 Subject::Subject(int x, int y, int radius, bool infected)
 {
     this->_x = x;
