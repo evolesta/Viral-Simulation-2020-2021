@@ -17,7 +17,7 @@ namespace ViralSimulation.SeleniumTests
         [Test]
         public void PassTheTest()
         {
-            Assert.True(true);
+            Assert.True(false);
         }
 
         [Test]
