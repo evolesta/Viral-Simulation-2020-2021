@@ -13,13 +13,6 @@ namespace ViralSimulation.SeleniumTests
     public class Class1
     {
 
-
-        [Test]
-        public void PassTheTest()
-        {
-            Assert.True(false);
-        }
-
         [Test]
         public void Bla()
         {
