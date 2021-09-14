@@ -21,14 +21,16 @@ namespace ViralSimulation.SeleniumTests
         }
 
         [Test]
-        public void Bla()
+        public void Failing_Test()
         {
-            //var driver = new ChromeDriver();
-            //driver.Navigate().GoToUrl("/home/src/viralsimtester/viralsim/index.html");
-            //var graphElementElement = driver.FindElement(By.Id("graph"));
-            //Assert.False(graphElementElement.Displayed);
+            Assert.Fail();
+        }
 
+        [Test]
+        public void Body_Should_Contain_Correct_Heading()
+        {
             var document = new HtmlDocument();
+            //For local debugging:
             //var stream = File.OpenText(@"C:\Data\index.html");
             var stream = File.OpenText("/home/src/viralsim/index.html");
             document.Load(stream);
