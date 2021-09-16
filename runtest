@@ -2,6 +2,13 @@
 
 cd ViralSimulation.SeleniumTests
 dotnet test
-if [ $? -ne 0 ] then 
-  exit 1 
+
+# TODO:
+# $? in variable
+# Log test results
+# Exit if variable holds non zero value
+
+if [ $? -ne 0 ]; then 
+  exit 1
 fi 
+
