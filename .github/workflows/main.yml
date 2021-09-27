@@ -38,3 +38,37 @@ jobs:
           context: .
           push: true
           tags: koenst/viralsimulation:latest
+
+      -
+        name: Email notification on failure
+        if: ${{ failure() }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.office365.com
+          server_port: 587
+          username: ${{secrets.MAIL_ADDRESS_1}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Github Action failed for ${{github.repository}}
+          to: ${{secrets.MAIL_ADDRESS_1}}, ${{secrets.MAIL_ADDRESS_2}}
+          # Required sender full name (address can be skipped):
+          from: Github Action for {{github.repository}} # <user@example.com>
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          # Optional plain body:
+          body: Build job of ${{github.repository}} failed.
+          # Optional HTML body read from file:
+          # html_body: file://README.html
+          # Optional carbon copy recipients:
+          # cc: kyloren@example.com,leia@example.com
+          # Optional blind carbon copy recipients:
+          # bcc: r2d2@example.com,hansolo@example.com
+          # Optional recipient of the email response:
+          # reply_to: luke@example.com
+          # Optional unsigned/invalid certificates allowance:
+          # ignore_cert: true
+          # Optional converting Markdown to HTML (set content_type to text/html too):
+          convert_markdown: true
+          # Optional attachments:
+          # attachments: attachments.zip,git.diff,./dist/static/*.js
+          # Optional priority: 'high', 'normal' (default) or 'low'
+          # priority: low
